@@ -1,21 +1,17 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-
-@app.route("/")
-def index():
-    return "<h1>Hello, world!</h1>"
-
-
-@app.route("/user/<name>")
-def print_name(name):
-    return f"<h1>Hello, {name} </h1>"
+people = [
+    {"name": "John McAdams",
+     "age": 45,
+     "favourite_food": "Scrambled Eggs"}
+]
 
 
-@app.route("/dance")
-def do_dance():
-    return "<h1>Bad request</h1>", 400
+@app.route("/api")
+def get_people():
+    return jsonify(people)
 
 
 if __name__ == "__main__":
